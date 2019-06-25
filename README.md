@@ -8,4 +8,5 @@ Esta aplicação simula um algoritmo de busca com base em path finding flood fil
 A aplicação foi implementada em Javascript, e é executada em um browser. Para executar, basta abrir o arquivo **index.html** com um navegador.
 
 ## Imagens
-
+<img src="https://a.imge.to/2019/06/26/ggg7t.png"/>
+<img src="https://a.imge.to/2019/06/26/ggUdy.png"/>
