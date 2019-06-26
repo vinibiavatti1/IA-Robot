@@ -39,12 +39,12 @@ $(document).ready(function () {
  */
 function novo() {
     if (confirm("Deseja iniciar uma nova simulação?")) {
-        _largura = prompt("informe a largura do mapa (min: 5, max: 200):");
-        _altura = prompt("informe a altura do mapa (min: 5, max: 200):");
-        if (isNaN(_largura) || parseInt(_largura) < 5 || parseInt(_largura) > 200) {
+        _largura = prompt("informe a largura do mapa (min: 5, max: 200):", 20);
+        _altura = prompt("informe a altura do mapa (min: 5, max: 200):", 10);
+        if (_largura == '' || isNaN(_largura) || parseInt(_largura) < 5 || parseInt(_largura) > 200) {
             _largura = 20;
         }
-        if (isNaN(_altura) || parseInt(_altura) < 5 || parseInt(_altura) > 200) {
+        if (_altura == '' || isNaN(_altura) || parseInt(_altura) < 5 || parseInt(_altura) > 200) {
             _altura = 10;
         }
         largura = _largura;
@@ -295,7 +295,7 @@ function desenharTabuleiro() {
         html += "<tr>";
         for (var j = 0; j < largura; j++) {
             if (matriz[i][j] == objetos.parede) {
-                html += `<td class='quadrante parede' ${estilo} onclick='selecionarQuadrante(${j},${i})'></td>`;
+                html += `<td class='quadrante parede ${psy}' ${estilo} onclick='selecionarQuadrante(${j},${i})'></td>`;
             } else if (matriz[i][j] == objetos.nada) {
                 html += `<td class='quadrante' ${estilo} onclick='selecionarQuadrante(${j},${i})'></td>`;
             } else if (matriz[i][j] == objetos.robo) {
@@ -496,6 +496,35 @@ function selecionarExemplo(id) {
         desenharTabuleiro();
         selecionarFerramenta(ferramentas.ponteiro);
     }
+    if (id == 4) {
+        alert("!!! PaRaBéNs! VoCê EnCoNtRoU o MaPa SeCrEtO PsIcOdÉlIcO !!!");
+        matriz = [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1],
+            [1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1],
+            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        ];
+        altura = matriz.length;
+        largura = matriz[0].length;
+        robo = {
+            x: 1,
+            y: 12
+        }
+        psy = "psy";
+        desenharTabuleiro();
+        selecionarFerramenta(ferramentas.ponteiro);
+    }
 }
 
 /**
@@ -514,6 +543,9 @@ function permiteDiagonal() {
     }
 }
 
+/**
+ * Zoom In
+ */
 function zoomin() {
     zoom += 5;
     if (zoom > 30) {
@@ -522,10 +554,60 @@ function zoomin() {
     desenharTabuleiro();
 }
 
+/**
+ * Zoom out
+ */
 function zoomout() {
     zoom -= 5;
     if (zoom < 5) {
         zoom = 5;
     }
     desenharTabuleiro();
+}
+
+/**
+ * Gerar mapa aleatorio
+ */
+function gerarMapaAleatorio() {
+    if (!confirm("Deseja gerar um mapa aleatório?")) {
+        return;
+    }
+    var chanceParede = prompt("Defina a chance do quadrante ser parede (Valor em %):", 25);
+    if(chanceParede == '' || isNaN(chanceParede) || chanceParede < 0 || chanceParede > 100) {
+        chanceParede = 25;
+    }
+    for (var i = 0; i < altura; i++) {
+        for (var j = 0; j < largura; j++) {
+            console.log("sad");
+            if (i == 0 || j == 0 || j == largura - 1 || i == altura - 1) {
+                matriz[i][j] = objetos.parede;
+                continue;
+            }
+            if(Math.random() <= (chanceParede / 100)) {
+                matriz[i][j] = objetos.parede;
+            } else {
+                matriz[i][j] = objetos.nada;
+            }
+        }
+    }
+    desenharTabuleiro();
+}
+
+/**
+ * ???
+ * @param {*} id 
+ */
+var a = 0;
+var psy = "";
+function easterEgg(id) {
+    if(id == 1) {
+        $("#bryan").html("<b>Bryan Milk</b>");
+    }
+    if(id == 2) {
+        a++;
+        if(a >= 8) {
+            console.log("asd");
+            $("#secret").show();
+        }
+    }
 }

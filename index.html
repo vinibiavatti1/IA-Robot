@@ -16,6 +16,9 @@
         <div class="botao" onclick="novo()">
             Novo
         </div>
+        <div class="botao" onclick="gerarMapaAleatorio()">
+            Gerar Aleatório
+        </div>
         <div class="sub-titulo">Simulação</div>
         <hr class="linha">
         <div class="botao botao-iniciar" onclick="iniciarSimulacao()">
@@ -38,6 +41,8 @@
         <div id="botao-parede" class="botao" onclick="selecionarFerramenta(ferramentas.parede)">
             Parede
         </div>
+        <div class="sub-titulo">Exibição</div>
+        <hr class="linha">
         <div id="botao" class="botao" onclick="zoomin()">
             Zoom in
         </div>
@@ -55,6 +60,17 @@
         <div class="botao" onclick="selecionarExemplo(3)">
             Exemplo 3
         </div>
+        <div id="secret" style="display: none;" class="botao" onclick="selecionarExemplo(4)">
+            Secret
+        </div>
+        <div class="sub-titulo">Créditos</div>
+        <hr class="linha">
+        <div class="creditos">
+            <b>FURB - Universidade Regional de Blumenau</b>
+            <br>Vinícius, Matheus e <span id="bryan" onclick="easterEgg(1)">Bryan</span>
+            <br>25/07/2019
+            <br><span onclick="easterEgg(2)" style="cursor: pointer">&copy;</span> Copyright
+        </div>
     </div>
     <div class="area-tabuleiro">
         <table id="tabuleiro" class="tabuleiro">
@@ -62,12 +78,6 @@
                 
             </tbody>
         </table>
-    </div>
-    <div class="creditos">
-        FURB - Universidade Regional de Blumenau
-        <br>Vinícius, Matheus e Bryan
-        <br>25/07/2019
-        <br>&copy; Copyright
     </div>
 </body>
 </html>

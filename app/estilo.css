@@ -11,7 +11,8 @@
     bottom: 0px;
     width: 200px;
     background-color: rgba(0,0,0,0.1);
-    border-right: 1px solid rgba(0,0,0,0.1.5)
+    border-right: 1px solid rgba(0,0,0,0.1.5);
+    overflow-y: auto;
 }
 
 .area-tabuleiro {
@@ -20,7 +21,7 @@
     top: 0px;
     right: 0px;
     bottom: 0px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.4);
     overflow: scroll;
 }
 
@@ -105,9 +106,30 @@
 
 .creditos {
     font-size: 11px;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 200px;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
+}
+
+.psy {
+    animation: psy 1s infinite;
+}
+
+@keyframes psy {
+    15%{
+        background-color: rgba(255,0,0,0.8);
+    }
+    30% {
+        background-color: rgba(0,255,0,0.8);
+    }
+    45% {
+        background-color: rgba(0,0,255,0.8);
+    }
+    60% {
+        background-color: rgba(0,255,255,0.8);
+    }
+    75% {
+        background-color: rgba(255,0,255,0.8);
+    }
+    90% {
+        background-color: rgba(255,255,0,0.8);
+    }
 }
