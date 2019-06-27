@@ -1,4 +1,4 @@
-# IA-ROBOT
+# IA-Robot
 Simulador de busca em ambiente 2D
 
 ## Descrição
